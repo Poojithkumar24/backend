@@ -1,12 +1,12 @@
 package mongo
 
 type User struct {
-	UserID       string   `json:"userID"`
-	IsAdmin      bool     `json:"isAdmin"`
-	Name         string   `json:"name"`
-	Email        string   `json:"email"`
-	PasswordHash string   `json:"passwordHash"`
-	Bookings     []string `json:"bookings"`
+	UserID       string   `bson:"userID" json:"userID"`
+	IsAdmin      bool     `bson:"isAdmin" json:"isAdmin"`
+	Name         string   `bson:"name" json:"name"`
+	Email        string   `bson:"email" json:"email"`
+	PasswordHash string   `bson:"passwordHash" json:"passwordHash"`
+	Bookings     []string `bson:"bookings" json:"bookings"`
 }
 type Movie struct {
 	MovieID     string   `bson:"movieID,omitempty" json:"movieID"`
