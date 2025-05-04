@@ -14,7 +14,7 @@ var MongoClient *mongo.Client
 var MongoDB *mongo.Database
 
 func ConnectDB() {
-	uri := "your-mongo-uri" // Replace with real URI
+	uri := "mongodb+srv://poojithk883:Chandu2003@movieclusterfree.mcjknup.mongodb.net/?retryWrites=true&w=majority&appName=MovieClusterFree" // Replace with real URI
 	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
 	defer cancel()
 

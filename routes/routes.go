@@ -7,7 +7,8 @@ import (
 )
 
 func SetupRoutes(app *fiber.App) {
-	api := app.Group("/api")
+	api := app.Group("/backend")
 
+	api.Post("/movie", handlers.AddMovie)
 	api.Get("/movies", handlers.GetAllMovies)
 }

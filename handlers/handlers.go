@@ -8,6 +8,31 @@ import (
 	"github.com/gofiber/fiber/v2"
 )
 
+func AddMovie(c *fiber.Ctx) error {
+	var movie db.Movie
+
+	// Parse request body into the movie struct
+	if err := c.BodyParser(&movie); err != nil {
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
+			"error": "cannot parse JSON",
+		})
+	}
+
+	// Insert into MongoDB
+	collection := db.MongoDB.Collection("movies")
+	result, err := collection.InsertOne(context.Background(), movie)
+	if err != nil {
+		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
+			"error": "failed to insert movie",
+		})
+	}
+
+	return c.Status(fiber.StatusCreated).JSON(fiber.Map{
+		"message": "movie added successfully",
+		"id":      result.InsertedID,
+	})
+}
+
 func GetAllMovies(c *fiber.Ctx) error {
 	var movies []db.Movie
 	collection := db.MongoDB.Collection("movies")
