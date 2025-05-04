@@ -1,7 +1,23 @@
 package main
 
-import "fmt"
+import (
+	"log"
+
+	"github.com/Poojithkumar24/backend/routes"
+
+	db "github.com/Poojithkumar24/backend/db"
+
+	"github.com/gofiber/fiber/v2"
+)
 
 func main() {
-	fmt.Println("this is a movie app")
+	app := fiber.New()
+
+	// Initialize DB
+	db.ConnectDB()
+
+	// Register routes
+	routes.SetupRoutes(app)
+
+	log.Fatal(app.Listen(":8080"))
 }

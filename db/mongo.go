@@ -1,30 +1,34 @@
 package mongo
 
-/*schema:
+import (
+	"context"
+	"fmt"
+	"log"
+	"time"
 
-users
+	"go.mongodb.org/mongo-driver/mongo"
+	"go.mongodb.org/mongo-driver/mongo/options"
+)
 
-{
-  _id, name, email, password_hash, bookings: [booking_ids]
+var MongoClient *mongo.Client
+var MongoDB *mongo.Database
+
+func ConnectDB() {
+	uri := "your-mongo-uri" // Replace with real URI
+	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+	defer cancel()
+
+	client, err := mongo.Connect(ctx, options.Client().ApplyURI(uri))
+	if err != nil {
+		log.Fatal("Mongo connection error:", err)
+	}
+
+	err = client.Ping(ctx, nil)
+	if err != nil {
+		log.Fatal("Mongo ping error:", err)
+	}
+
+	MongoClient = client
+	MongoDB = client.Database("movie_app")
+	fmt.Println("✅ Connected to MongoDB")
 }
-
-movies
-{
-  _id, title, genre, duration, description, screen, shows[]
-}
-
-shows
-{
-  _id, movie_id, date, time, screen_id, price_per_seat
-}
-
-screens
-{
-  _id, theater_name, seat_layout: [{ seat_no: "A1", type: "VIP" }]
-}
-
-bookings
-{
-  _id, user_id, show_id, seats: ["A1", "A2"], status: "confirmed", total_price
-}
-*/
