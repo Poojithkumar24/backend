@@ -2,6 +2,7 @@ package handlers
 
 import (
 	"context"
+	"log"
 
 	db "github.com/Poojithkumar24/backend/db"
 
@@ -9,6 +10,8 @@ import (
 )
 
 func AddMovie(c *fiber.Ctx) error {
+
+	log.Println("add mocie called ")
 	var movie db.Movie
 
 	// Parse request body into the movie struct
