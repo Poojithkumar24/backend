@@ -16,6 +16,7 @@ type Movie struct {
 	Description string   `bson:"description" json:"description"`
 	Screen      string   `bson:"screen" json:"screen"` // screen name or ID
 	Shows       []string `bson:"shows" json:"shows"`
+	ImageUrl    string   `bson:"imageUrl" json:"imageUrl"`
 }
 type Show struct {
 	SHowID       string  `bson:"showID,omitempty" json:"showID"`
