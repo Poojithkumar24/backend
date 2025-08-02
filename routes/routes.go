@@ -11,7 +11,5 @@ func SetupRoutes(app *fiber.App) {
 
 	api.Post("/movie", handlers.AddMovie)
 	api.Get("/movies", handlers.GetAllMovies)
-	api.Post("/mega/upload", handlers.UploadHandler)
-	api.Post("/mega/download", handlers.MegaDownloadHandler)
 
 }
